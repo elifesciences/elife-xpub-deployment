@@ -64,7 +64,7 @@ sequenceDiagram
     DH ->> JK: hook
 
     activate JK
-    Note over JK: dependencies-elife-xpub-update-xpub
+    Note over JK: dependencies-elife-xpub-deployment-update-xpub
     JK ->> GH: update container version
     deactivate JK
 
