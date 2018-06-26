@@ -14,6 +14,13 @@ elifePipeline {
     }
 
     elifeMainlineOnly {
+
+        // TODO: doesn't exist yet
+        //stage 'Deploy on end2end', {
+        //    elifeGitMoveToBranch commit, 'master'
+        //    builderDeployRevision 'elife-xpub--end2end', commit
+        //}
+
         stage 'Deploy on demo', {
             lock('elife-xpub--demo') {
                 builderDeployRevision 'elife-xpub--demo', commit
