@@ -14,6 +14,13 @@ elifePipeline {
     }
 
     elifeMainlineOnly {
+
+        // TODO: doesn't exist yet
+        //stage 'Deploy on end2end', {
+        //    elifeGitMoveToBranch commit, 'master'
+        //    builderDeployRevision 'elife-xpub--end2end', commit
+        //}
+
         stage 'Deploy on demo', {
             lock('elife-xpub--demo') {
                 builderDeployRevision 'elife-xpub--demo', commit
@@ -23,11 +30,6 @@ elifePipeline {
 
         stage 'Approval', {
             elifeGitMoveToBranch commit, 'approved'
-        }
-
-        stage 'Merge into master', {
-            // will be done in Jenkinsfile.prod when a prod server is created
-            elifeGitMoveToBranch commit, 'master'
         }
     }
 }
