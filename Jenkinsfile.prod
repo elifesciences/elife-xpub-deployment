@@ -8,5 +8,6 @@ elifePipeline {
     stage 'Deploy on prod', {
         elifeGitMoveToBranch commit, 'master'
         builderDeployRevision 'elife-xpub--prod', commit
+        builderSmokeTests 'elife-xpub--prod', '/srv/elife-xpub'
     }
 }
