@@ -24,10 +24,5 @@ elifePipeline {
         stage 'Approval', {
             elifeGitMoveToBranch commit, 'approved'
         }
-
-        stage 'Merge into master', {
-            // will be done in Jenkinsfile.prod when a prod server is created
-            elifeGitMoveToBranch commit, 'master'
-        }
     }
 }
