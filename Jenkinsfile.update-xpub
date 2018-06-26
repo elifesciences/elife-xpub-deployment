@@ -2,12 +2,9 @@ elifeUpdatePipeline(
     { commit ->
         // sh 'env' 
         // DOCKER_TRIGGER_REPO_NAME=xpub
-        elifeOnNode(
-            {
-                commit = dockerReadLabel('xpub/xpub-elife:latest', 'COMMIT_SHA')
-            },
-            'containers--medium'
-        )
+        node('containers-jenkins-plugin') {
+            commit = dockerReadLabel('xpub/xpub-elife:latest', 'COMMIT_SHA')
+        }
         sh "sed -i -e 's/XPUB_VERSION=.*/XPUB_VERSION=${commit}/' .env"
         sh "git add .env"
     },
