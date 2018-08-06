@@ -20,7 +20,8 @@ services:
                 },
                 "pubsweet-server": {
                     "baseUrl": "${PUBSWEET_BASEURL}",
-                    "secret": "somesecret"
+                    "secret": "somesecret",
+                    "hostname": "${PUBSWEET_HOSTNAME}"
                 },
                 "password-reset": {
                     "url": "${PUBSWEET_BASEURL}/password-reset"
