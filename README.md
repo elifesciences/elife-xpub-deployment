@@ -44,6 +44,15 @@ docker-compose up
 
 Visit the web interface at [http://localhost:3000].
 
+Formula setup
+=============
+
+When used as part of `elife-xpub-formula`, an additional `docker-compose.formula.yml` should be used as configuration for all commands:
+
+```
+docker-compose -f docker-compose.yml -f docker-compose.formula.yml up
+```
+
 Build
 =====
 
