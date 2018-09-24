@@ -36,11 +36,11 @@ services:
                     "clientSecret": "${ORCID_CLIENT_SECRET}"
                 },
                 "meca": {
-                  "s3": {
-                    "params": {
-                      "Bucket": "${S3_BUCKET}",
+                    "s3": {
+                        "params": {
+                          "Bucket": "${S3_BUCKET}",
+                        }
                     }
-                  }
                 }
 
             }'
