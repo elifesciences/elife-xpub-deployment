@@ -6,34 +6,21 @@ services:
         command: >
             /bin/bash -c "
                 until echo > /dev/tcp/postgres/5432; do sleep 1; done
-                npx pubsweet server
+                node app
             "
         ports:
             - 3000:3000
         depends_on:
             - postgres
+        env_file:
+          - .env
         environment:
             NODE_ENV: production
+            PGHOST: postgres
+            PGUSER: xpub
             NODE_CONFIG: '{
-                "pubsweet-client": {
-                    "API_ENDPOINT": "/api"
-                },
-                "pubsweet-server": {
-                    "baseUrl": "${PUBSWEET_BASEURL}",
-                    "secret": "somesecret",
-                    "hostname": "${PUBSWEET_HOSTNAME}"
-                },
-                "password-reset": {
-                    "url": "${PUBSWEET_BASEURL}/password-reset"
-                },
-                "pubsweet-component-ink-backend": {
-                    "inkEndpoint": "https://demo--ink.elifesciences.org",
-                    "email": "fake",
-                    "password": "fake"
-                },
                 "auth-orcid": {
-                    "clientID": "${ORCID_CLIENT_ID}",
-                    "clientSecret": "${ORCID_CLIENT_SECRET}"
+                    "sandbox": true
                 },
                 "meca": {
                     "s3": {
@@ -42,10 +29,8 @@ services:
                         }
                     }
                 }
-
             }'
-            PGHOST: postgres
-            PGUSER: xpub
+
     postgres:
         image: postgres:10
         ports:
