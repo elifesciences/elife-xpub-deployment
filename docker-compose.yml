@@ -12,8 +12,6 @@ services:
             - 3000:3000
         depends_on:
             - postgres
-        env_file:
-          - .env
         environment:
             NODE_ENV: production
             NODE_CONFIG: '{
@@ -33,6 +31,11 @@ services:
             }'
             PGHOST: postgres
             PGUSER: xpub
+            ORCID_CLIENT_ID:
+            ORCID_CLIENT_SECRET:
+            PUBSWEET_BASEURL:
+            PUBSWEET_HOSTNAME:
+            PUBSWEET_SECRET:
 
     sciencebeam:
         image: elifesciences/sciencebeam:${SCIENCEBEAM_TAG}
@@ -43,7 +46,7 @@ services:
         - "8075:8075"
         networks:
         - default
-        - grobid
+        - sciencebeam-internal
         restart: always
         depends_on:
         - grobid
@@ -55,7 +58,7 @@ services:
         ports:
         - "8070:8070"
         networks:
-        - grobid
+        - sciencebeam-internal
         healthcheck:
             test: ["CMD", "bash", "-c", "echo > /dev/tcp/localhost/8070"]
             interval: 10s
@@ -83,5 +86,5 @@ volumes:
     postgres-volume:
 
 networks:
-    grobid:
+    sciencebeam-internal:
         internal: true
