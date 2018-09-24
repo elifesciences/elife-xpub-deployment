@@ -38,7 +38,7 @@ services:
                 "meca": {
                     "s3": {
                         "params": {
-                          "Bucket": "${S3_BUCKET}",
+                          "Bucket": "${S3_BUCKET}"
                         }
                     }
                 }
