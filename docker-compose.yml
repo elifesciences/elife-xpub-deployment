@@ -16,9 +16,10 @@ services:
           - .env
         environment:
             NODE_ENV: production
-            PGHOST: postgres
-            PGUSER: xpub
             NODE_CONFIG: '{
+                "scienceBeam":{
+                    "url":"http://sciencebeam:8075/api/convert"
+                },
                 "auth-orcid": {
                     "sandbox": true
                 },
@@ -30,6 +31,37 @@ services:
                     }
                 }
             }'
+            PGHOST: postgres
+            PGUSER: xpub
+
+    sciencebeam:
+        image: elifesciences/sciencebeam:${SCIENCEBEAM_TAG}
+        command: ./server.sh \
+            --host=0.0.0.0 --port=8075 \
+            --grobid-url http://grobid:8070/api
+        ports:
+        - "8075:8075"
+        networks:
+        - default
+        - grobid
+        restart: always
+        depends_on:
+        - grobid
+
+    grobid:
+        image: lfoppiano/grobid:${GROBID_TAG}
+        environment:
+        - JAVA_OPTS=-Xmx1g
+        ports:
+        - "8070:8070"
+        networks:
+        - grobid
+        healthcheck:
+            test: ["CMD", "bash", "-c", "echo > /dev/tcp/localhost/8070"]
+            interval: 10s
+            timeout: 10s
+            retries: 5
+        restart: always
 
     postgres:
         image: postgres:10
@@ -39,6 +71,7 @@ services:
             POSTGRES_USER: xpub
         volumes:
             - postgres-volume:/var/lib/postgresql/data
+
     bootstrap:
         image: bash:4.3.48
         command: >
@@ -48,3 +81,7 @@ services:
 
 volumes:
     postgres-volume:
+
+networks:
+    grobid:
+        internal: true
