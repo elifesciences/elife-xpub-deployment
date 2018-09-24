@@ -13,7 +13,7 @@ services:
         depends_on:
             - postgres
         environment:
-            NODE_ENV: development
+            NODE_ENV: production
             NODE_CONFIG: '{
                 "pubsweet-client": {
                     "API_ENDPOINT": "/api"
