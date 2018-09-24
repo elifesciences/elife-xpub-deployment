@@ -13,7 +13,7 @@ services:
         depends_on:
             - postgres
         environment:
-            NODE_ENV: development
+            NODE_ENV: production
             NODE_CONFIG: '{
                 "pubsweet-client": {
                     "API_ENDPOINT": "/api"
@@ -34,7 +34,15 @@ services:
                 "auth-orcid": {
                     "clientID": "${ORCID_CLIENT_ID}",
                     "clientSecret": "${ORCID_CLIENT_SECRET}"
+                },
+                "meca": {
+                    "s3": {
+                        "params": {
+                          "Bucket": "${S3_BUCKET}"
+                        }
+                    }
                 }
+
             }'
             PGHOST: postgres
             PGUSER: xpub
