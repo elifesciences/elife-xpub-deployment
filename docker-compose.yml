@@ -19,7 +19,7 @@ services:
                     "url":"http://sciencebeam:8075/api/convert"
                 },
                 "auth-orcid": {
-                    "sandbox": true
+                    "sandbox": ${ORCID_SANDBOX}
                 },
                 "meca": {
                     "s3": {
