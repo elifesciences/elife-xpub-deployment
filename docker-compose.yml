@@ -6,7 +6,7 @@ services:
         command: >
             /bin/bash -c "
                 until echo > /dev/tcp/postgres/5432; do sleep 1; done
-                npx pubsweet server
+                node app
             "
         ports:
             - 3000:3000
@@ -15,25 +15,11 @@ services:
         environment:
             NODE_ENV: production
             NODE_CONFIG: '{
-                "pubsweet-client": {
-                    "API_ENDPOINT": "/api"
-                },
-                "pubsweet-server": {
-                    "baseUrl": "${PUBSWEET_BASEURL}",
-                    "secret": "somesecret",
-                    "hostname": "${PUBSWEET_HOSTNAME}"
-                },
-                "password-reset": {
-                    "url": "${PUBSWEET_BASEURL}/password-reset"
-                },
-                "pubsweet-component-ink-backend": {
-                    "inkEndpoint": "https://demo--ink.elifesciences.org",
-                    "email": "fake",
-                    "password": "fake"
+                "scienceBeam":{
+                    "url":"http://sciencebeam:8075/api/convert"
                 },
                 "auth-orcid": {
-                    "clientID": "${ORCID_CLIENT_ID}",
-                    "clientSecret": "${ORCID_CLIENT_SECRET}"
+                    "sandbox": true
                 },
                 "meca": {
                     "s3": {
@@ -42,10 +28,44 @@ services:
                         }
                     }
                 }
-
             }'
             PGHOST: postgres
             PGUSER: xpub
+            ORCID_CLIENT_ID:
+            ORCID_CLIENT_SECRET:
+            PUBSWEET_BASEURL:
+            PUBSWEET_HOSTNAME:
+            PUBSWEET_SECRET:
+
+    sciencebeam:
+        image: elifesciences/sciencebeam:${SCIENCEBEAM_TAG}
+        command: ./server.sh \
+            --host=0.0.0.0 --port=8075 \
+            --grobid-url http://grobid:8070/api
+        ports:
+        - "8075:8075"
+        networks:
+        - default
+        - sciencebeam-internal
+        restart: always
+        depends_on:
+        - grobid
+
+    grobid:
+        image: lfoppiano/grobid:${GROBID_TAG}
+        environment:
+        - JAVA_OPTS=-Xmx1g
+        ports:
+        - "8070:8070"
+        networks:
+        - sciencebeam-internal
+        healthcheck:
+            test: ["CMD", "bash", "-c", "echo > /dev/tcp/localhost/8070"]
+            interval: 10s
+            timeout: 10s
+            retries: 5
+        restart: always
+
     postgres:
         image: postgres:10
         ports:
@@ -54,6 +74,7 @@ services:
             POSTGRES_USER: xpub
         volumes:
             - postgres-volume:/var/lib/postgresql/data
+
     bootstrap:
         image: bash:4.3.48
         command: >
@@ -63,3 +84,7 @@ services:
 
 volumes:
     postgres-volume:
+
+networks:
+    sciencebeam-internal:
+        internal: true
