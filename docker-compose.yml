@@ -14,12 +14,10 @@ services:
             - postgres
         environment:
             NODE_ENV: production
+            NODE_CONFIG_ENV:
             NODE_CONFIG: '{
                 "scienceBeam":{
                     "url":"http://sciencebeam:8075/api/convert"
-                },
-                "auth-orcid": {
-                    "sandbox": ${ORCID_SANDBOX}
                 },
                 "meca": {
                     "s3": {
