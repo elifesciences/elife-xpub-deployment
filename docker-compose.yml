@@ -12,8 +12,6 @@ services:
             - 3000:3000
         depends_on:
             - postgres
-        volumes:
-            - /srv/elife-xpub/var/logs/:/var/logs/xpub
         environment:
             NODE_ENV: production
             NODE_CONFIG_ENV:
