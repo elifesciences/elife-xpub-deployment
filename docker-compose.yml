@@ -27,8 +27,10 @@ services:
                     }
                 }
             }'
-            PGHOST: postgres
-            PGUSER: xpub
+            PGHOST: 
+            PGUSER:
+            PGPASSWORD:
+            PGDATABASE:
             ORCID_CLIENT_ID:
             ORCID_CLIENT_SECRET:
             PUBSWEET_BASEURL:
