@@ -21,10 +21,10 @@ elifePipeline {
         //    builderDeployRevision 'elife-xpub--end2end', commit
         //}
 
-        stage 'Deploy on demo', {
-            lock('elife-xpub--demo') {
-                builderDeployRevision 'elife-xpub--demo', commit
-                builderSmokeTests 'elife-xpub--demo', '/srv/elife-xpub'
+        stage 'Deploy on staging', {
+            lock('elife-xpub--staging') {
+                builderDeployRevision 'elife-xpub--staging', commit
+                builderSmokeTests 'elife-xpub--staging', '/srv/elife-xpub'
             }
         }
 
