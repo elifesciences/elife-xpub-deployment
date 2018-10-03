@@ -4,4 +4,4 @@ services:
     app:
         volumes:
             - /home/elife/.aws/credentials:/home/xpub/.aws/credentials
-            - /srv/elife-xpub/var/logs/:/var/logs/xpub
+            - /srv/elife-xpub/var/logs/:/var/log/xpub
