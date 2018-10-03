@@ -27,6 +27,7 @@ services:
                     }
                 }
             }'
+            NODE_OPTIONS: '--max-old-space-size=1024'
             PGHOST: postgres
             PGUSER: xpub
             ORCID_CLIENT_ID:
