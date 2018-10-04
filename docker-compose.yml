@@ -34,6 +34,7 @@ services:
             PUBSWEET_BASEURL:
             PUBSWEET_HOSTNAME:
             PUBSWEET_SECRET:
+            MECA_API_KEY:
 
     sciencebeam:
         image: elifesciences/sciencebeam:${SCIENCEBEAM_TAG}
