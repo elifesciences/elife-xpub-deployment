@@ -72,7 +72,13 @@ services:
         ports:
             - 5432:5432
         environment:
-            POSTGRES_USER: xpub
+            POSTGRES_USER: ${PGUSER}
+            POSTGRES_DB: ${PGDATABASE}
+            PGHOST:
+            PGUSER:
+            PGPASSWORD:
+            PGDATABASE:
+            PGPORT:
         volumes:
             - postgres-volume:/var/lib/postgresql/data
 
