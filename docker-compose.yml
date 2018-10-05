@@ -27,8 +27,11 @@ services:
                     }
                 }
             }'
-            PGHOST: postgres
-            PGUSER: xpub
+            PGHOST: 
+            PGUSER:
+            PGPASSWORD:
+            PGDATABASE:
+            PGPORT:
             ORCID_CLIENT_ID:
             ORCID_CLIENT_SECRET:
             PUBSWEET_BASEURL:
@@ -70,7 +73,13 @@ services:
         ports:
             - 5432:5432
         environment:
-            POSTGRES_USER: xpub
+            POSTGRES_USER: ${PGUSER}
+            POSTGRES_DB: ${PGDATABASE}
+            #PGHOST:
+            #PGUSER:
+            #PGPASSWORD:
+            #PGDATABASE:
+            #PGPORT:
         volumes:
             - postgres-volume:/var/lib/postgresql/data
 
