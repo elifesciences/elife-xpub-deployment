@@ -74,11 +74,11 @@ services:
         environment:
             POSTGRES_USER: ${PGUSER}
             POSTGRES_DB: ${PGDATABASE}
-            PGHOST:
-            PGUSER:
-            PGPASSWORD:
-            PGDATABASE:
-            PGPORT:
+            #PGHOST:
+            #PGUSER:
+            #PGPASSWORD:
+            #PGDATABASE:
+            #PGPORT:
         volumes:
             - postgres-volume:/var/lib/postgresql/data
 
