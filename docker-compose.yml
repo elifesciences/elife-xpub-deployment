@@ -27,7 +27,7 @@ services:
                     }
                 }
             }'
-            PGHOST: 
+            PGHOST:
             PGUSER:
             PGPASSWORD:
             PGDATABASE:
@@ -37,6 +37,11 @@ services:
             PUBSWEET_BASEURL:
             PUBSWEET_HOSTNAME:
             PUBSWEET_SECRET:
+            MECA_SFTP_HOST:
+            MECA_SFTP_PORT:
+            MECA_SFTP_USERNAME:
+            MECA_SFTP_PASSWORD:
+            MECA_SFTP_REMOTEPATH:
             MECA_API_KEY:
 
     sciencebeam:
