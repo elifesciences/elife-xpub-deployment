@@ -43,6 +43,9 @@ services:
             MECA_SFTP_PASSWORD:
             MECA_SFTP_REMOTEPATH:
             MECA_API_KEY:
+            NEW_RELIC_ENABLED:
+            NEW_RELIC_APP_NAME:
+            NEW_RELIC_LICENSE_KEY:
 
     sciencebeam:
         image: elifesciences/sciencebeam:${SCIENCEBEAM_TAG}
