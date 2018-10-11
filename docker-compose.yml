@@ -32,8 +32,6 @@ services:
             PGPASSWORD:
             PGDATABASE:
             PGPORT:
-            ORCID_CLIENT_ID:
-            ORCID_CLIENT_SECRET:
             PUBSWEET_BASEURL:
             PUBSWEET_HOSTNAME:
             PUBSWEET_SECRET:
