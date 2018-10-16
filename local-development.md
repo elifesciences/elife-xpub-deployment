@@ -2,6 +2,8 @@
 
 At times it may be necessary to change the way the deployment works, the most convenient way of doing this is to make changes locally. This avoids having to setup and wait for external services. This file contains some details on how to do this development locally.
 
+Please also refer to the [Salt Stack](https://docs.saltstack.com/en/latest/) [elife-xpub-formula repo](https://github.com/elifesciences/elife-xpub-formula)
+
 # Requirements
 
 You will need installed `Vagrant` and `VirtualBox`
