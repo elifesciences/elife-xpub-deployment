@@ -1,6 +1,6 @@
 # Local Deployment Tesing
 
-At times it may be necessary to change the way the deployment works, the most convienent way of doing this is to make changes locally. This avoids having to setup and wait for external services. This file contains some details on how to do this development locally.
+At times it may be necessary to change the way the deployment works, the most convenient way of doing this is to make changes locally. This avoids having to setup and wait for external services. This file contains some details on how to do this development locally.
 
 # Requirements
 
@@ -8,7 +8,7 @@ You will need installed `Vagrant` and `VirtualBox`
 
 # Getting Started
 
-Clone the repoistory [builder](https://github.com/elifesciences/builder) onto your local machine:
+Clone the repository [builder](https://github.com/elifesciences/builder) onto your local machine:
 ```
   git clone git@github.com:elifesciences/builder.git
 ```
@@ -17,6 +17,7 @@ In the root of the project folder run `vagrant up` and select elife-xpub. Altern
 ```
    PROJECT=elife-xpub vagrant up
 ```
+*NOTE* For the current documentation see the [builder repo]( https://github.com/elifesciences/builder/#vagrant)
 
 # Testing the deployment
 In order to test the deployment, please make changes to the [formula repo](https://github.com/elifesciences/elife-xpub-formula
@@ -30,7 +31,7 @@ Check that the VM is running with:
     PROJECT=elife-xpub vagrant status
 ```
 
-The the deployment can be re-run with (if the VM is already running):
+Then the deployment can be re-run with (if the VM is already running):
 ```
     PROJECT=elife-xpub vagrant provision
 ```
@@ -61,3 +62,4 @@ You can tear down all containers that have been run with docker-compose from the
 ```
     docker-compose down -v
 ```
+*NOTE* The `-v` option will remove the volumes as well as the containers, which also means the database contents will also be deleted.
