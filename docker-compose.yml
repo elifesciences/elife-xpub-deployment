@@ -5,7 +5,7 @@ services:
         image: xpub/xpub-elife:${XPUB_VERSION}
         command: >
             /bin/bash -c "
-                until echo > /dev/tcp/postgres/5432; do sleep 1; done
+                until echo > /dev/tcp/${PGHOST}/5432; do sleep 1; done
                 node app
             "
         ports:
@@ -81,14 +81,10 @@ services:
         environment:
             POSTGRES_USER: ${PGUSER}
             POSTGRES_DB: ${PGDATABASE}
-            #PGHOST:
-            #PGUSER:
-            #PGPASSWORD:
-            #PGDATABASE:
-            #PGPORT:
         volumes:
             - postgres-volume:/var/lib/postgresql/data
 
+    # useful to run `docker wait ...` to wait for the application outside from the host
     bootstrap:
         image: bash:4.3.48
         command: >
