@@ -84,6 +84,7 @@ services:
             POSTGRES_DB: ${PGDATABASE}
         volumes:
             - postgres-volume:/var/lib/postgresql/data
+        restart: always
 
     # useful to run `docker wait ...` to wait for the application outside from the host
     bootstrap:
