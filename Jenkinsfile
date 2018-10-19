@@ -20,7 +20,6 @@ elifePipeline {
                     stackname: 'elife-xpub--end2end',
                     revision: commit,
                     folder: '/srv/elife-xpub',
-                    concurrency: 'blue-green',
                     rollbackStep: {
                         builderDeployRevision 'elife-xpub--end2end', 'approved'
                         builderSmokeTests 'elife-xpub--end2end', '/srv/elife-xpub'
