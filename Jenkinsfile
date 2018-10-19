@@ -20,7 +20,11 @@ elifePipeline {
                     stackname: 'elife-xpub--end2end',
                     revision: commit,
                     folder: '/srv/elife-xpub',
-                    concurrency: 'blue-green'
+                    concurrency: 'blue-green',
+                    rollbackStep: {
+                        builderDeployRevision 'elife-xpub--end2end', 'approved'
+                        builderSmokeTests 'elife-xpub--end2end', '/srv/elife-xpub'
+                    }
                 ],
                 marker: 'xpub'
             )
@@ -35,6 +39,11 @@ elifePipeline {
 
         stage 'Approval', {
             elifeGitMoveToBranch commit, 'approved'
+            node('containers-jenkins-plugin') {
+                def image = new DockerImage(steps, "xpub/xpub-elife", commit)
+                image.pull()
+                image.tag('approved').push()
+            }
         }
     }
 }
