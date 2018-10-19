@@ -15,10 +15,15 @@ elifePipeline {
 
     elifeMainlineOnly {
         stage 'Deploy on end2end', {
-            lock('elife-xpub--end2end') {
-                builderDeployRevision 'elife-xpub--end2end', commit
-                builderSmokeTests 'elife-xpub--end2end', '/srv/elife-xpub'
-            }
+            elifeSpectrum(
+                deploy: [
+                    stackname: 'elife-xpub--end2end',
+                    revision: commit,
+                    folder: '/srv/elife-xpub',
+                    concurrency: 'blue-green'
+                ],
+                marker: 'xpub'
+            )
         }
 
         stage 'Deploy on staging', {
