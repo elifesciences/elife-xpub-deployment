@@ -38,11 +38,6 @@ elifePipeline {
 
         stage 'Approval', {
             elifeGitMoveToBranch commit, 'approved'
-            node('containers-jenkins-plugin') {
-                def image = new DockerImage(steps, "xpub/xpub-elife", commit)
-                image.pull()
-                image.tag('approved').push()
-            }
         }
     }
 }
