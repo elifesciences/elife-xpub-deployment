@@ -15,10 +15,18 @@ elifePipeline {
 
     elifeMainlineOnly {
         stage 'Deploy on end2end', {
-            lock('elife-xpub--end2end') {
-                builderDeployRevision 'elife-xpub--end2end', commit
-                builderSmokeTests 'elife-xpub--end2end', '/srv/elife-xpub'
-            }
+            elifeSpectrum(
+                deploy: [
+                    stackname: 'elife-xpub--end2end',
+                    revision: commit,
+                    folder: '/srv/elife-xpub',
+                    rollbackStep: {
+                        builderDeployRevision 'elife-xpub--end2end', 'approved'
+                        builderSmokeTests 'elife-xpub--end2end', '/srv/elife-xpub'
+                    }
+                ],
+                marker: 'xpub'
+            )
         }
 
         stage 'Deploy on staging', {
@@ -30,6 +38,11 @@ elifePipeline {
 
         stage 'Approval', {
             elifeGitMoveToBranch commit, 'approved'
+            node('containers-jenkins-plugin') {
+                def image = new DockerImage(steps, "xpub/xpub-elife", commit)
+                image.pull()
+                image.tag('approved').push()
+            }
         }
     }
 }
