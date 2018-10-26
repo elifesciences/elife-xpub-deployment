@@ -20,10 +20,7 @@ elifePipeline {
                     stackname: 'elife-xpub--end2end',
                     revision: commit,
                     folder: '/srv/elife-xpub',
-                    rollbackStep: {
-                        builderDeployRevision 'elife-xpub--end2end', 'approved'
-                        builderSmokeTests 'elife-xpub--end2end', '/srv/elife-xpub'
-                    }
+                    concurrency: 'blue-green',
                 ],
                 marker: 'xpub'
             )
@@ -31,7 +28,7 @@ elifePipeline {
 
         stage 'Deploy on staging', {
             lock('elife-xpub--staging') {
-                builderDeployRevision 'elife-xpub--staging', commit
+                builderDeployRevision 'elife-xpub--staging', commit, 'blue-green'
                 builderSmokeTests 'elife-xpub--staging', '/srv/elife-xpub'
             }
         }
