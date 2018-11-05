@@ -45,6 +45,7 @@ services:
             NEW_RELIC_ENABLED:
             NEW_RELIC_APP_NAME:
             NEW_RELIC_LICENSE_KEY:
+            ELIFE_API_GATEWAY_SECRET:
 
     sciencebeam:
         image: elifesciences/sciencebeam:${SCIENCEBEAM_TAG}
