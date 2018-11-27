@@ -14,7 +14,7 @@ elifePipeline {
 
     elifeMainlineOnly {
         stage 'Deploy on end2end', {
-            def elifeXpubCommit = sh(script: "/bin/bash -c 'source .env && echo $XPUB_VERSION'", returnStdout: true).trim()
+            def elifeXpubCommit = sh(script: "/bin/bash -c 'source .env && echo \$XPUB_VERSION'", returnStdout: true).trim()
             elifeSpectrum(
                 deploy: [
                     stackname: 'elife-xpub--end2end',
