@@ -5,13 +5,6 @@ elifePipeline {
         commit = elifeGitRevision()
     }
 
-    stage 'Project tests', {
-        lock('elife-xpub--ci') {
-            builderDeployRevision 'elife-xpub--ci', commit
-            builderSmokeTests 'elife-xpub--ci', '/srv/elife-xpub'
-        }
-    }
-
     elifeMainlineOnly {
         stage 'Deploy on end2end', {
             def elifeXpubCommit = sh(script: "/bin/bash -c 'source .env && echo \$XPUB_VERSION'", returnStdout: true).trim()
