@@ -5,11 +5,13 @@ elifePipeline {
         commit = elifeGitRevision()
     }
 
-    node('containers-jenkins-plugin') {
-        checkout scm
-        sh 'docker-compose up -d'
-        sh 'docker wait xpub_bootstrap_1'
-        sh 'curl --verbose --fail localhost:3000'
+    stage 'Smoke tests', {
+        node('containers-jenkins-plugin') {
+            checkout scm
+            sh 'docker-compose up -d'
+            sh 'docker wait xpub_bootstrap_1'
+            sh 'curl --verbose --fail localhost:3000'
+        }
     }
 
     elifeMainlineOnly {
