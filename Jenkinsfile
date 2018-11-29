@@ -8,9 +8,11 @@ elifePipeline {
     stage 'Smoke tests', {
         node('containers-jenkins-plugin') {
             checkout scm
-            sh 'docker-compose up -d'
-            sh 'docker wait xpub_bootstrap_1'
-            sh 'curl --verbose --fail localhost:3000'
+            withCommitStatus({
+                sh 'docker-compose up -d'
+                sh 'docker wait xpub_bootstrap_1'
+                sh 'curl --verbose --fail localhost:3000'
+            }, 'ci/smoke-tests', commit)
         }
     }
 
