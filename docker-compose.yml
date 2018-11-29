@@ -2,7 +2,7 @@ version: '3'
 
 services:
     app:
-        image: xpub/xpub-elife:${XPUB_VERSION}
+        image: elifesciences/elife-xpub:${XPUB_VERSION}
         command: >
             /bin/bash -c "
                 until echo > /dev/tcp/${PGHOST}/5432; do sleep 1; done
