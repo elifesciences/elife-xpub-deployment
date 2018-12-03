@@ -5,6 +5,21 @@ elifePipeline {
         commit = elifeGitRevision()
     }
 
+    stage 'Smoke tests', {
+        node('containers-jenkins-plugin') {
+            checkout scm
+            withCommitStatus({
+                try {
+                    sh 'docker-compose up -d'
+                    sh 'docker wait xpub_bootstrap_1'
+                    sh 'curl --verbose --fail localhost:3000'
+                } finally {
+                    sh 'docker-compose down -v'
+                }
+            }, 'ci/smoke-tests', commit)
+        }
+    }
+
     elifeMainlineOnly {
         stage 'Deploy on end2end', {
             def elifeXpubCommit = sh(script: "/bin/bash -c 'source .env && echo \$XPUB_VERSION'", returnStdout: true).trim()
