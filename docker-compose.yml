@@ -46,6 +46,9 @@ services:
             NEW_RELIC_APP_NAME:
             NEW_RELIC_LICENSE_KEY:
             ELIFE_API_GATEWAY_SECRET:
+            MAILER_HOST:
+            MAILER_PORT:
+            MAILER_AUTH:
 
     sciencebeam:
         image: elifesciences/sciencebeam:${SCIENCEBEAM_TAG}
