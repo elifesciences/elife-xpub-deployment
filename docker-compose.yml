@@ -60,6 +60,11 @@ services:
         networks:
         - default
         - sciencebeam-internal
+        healthcheck:
+            test: ["CMD", "bash", "-c", "echo > /dev/tcp/localhost/8075"]
+            interval: 10s
+            timeout: 10s
+            retries: 5
         restart: always
         depends_on:
         - grobid
