@@ -1,8 +1,6 @@
 p.hooper@elifesciences.org
 h.drury@elifesciences.org
 c.donkin@elifesciences.org
-jennifer.spencer@yld.io
-hamant@yld.io
-javier.yenes@yld.io
-semra.shukrieva@yld.io
-#xpub-tech
+p.east@elifesceinces.org
+e.odier@elifesciences.org
+w.byrne@elifesciences.org
