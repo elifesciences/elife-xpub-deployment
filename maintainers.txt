@@ -1,7 +1,2 @@
-p.hooper@elifesciences.org
-h.drury@elifesciences.org
-c.donkin@elifesciences.org
-p.east@elifesceinces.org
-e.odier@elifesciences.org
-w.byrne@elifesciences.org
-#xpub-tech
+xpub-tech-alerts@elifesciences.org
+elifesciences.slack.com#xpub-tech
