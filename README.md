@@ -38,7 +38,7 @@ Run these commands:
 
 ```
 docker-compose up -d postgres
-docker-compose run app /bin/bash -c "npx pubsweet setupdb --username=foo --password=password --email=foo@example.com --clobber"
+docker-compose run app /bin/bash -c "npx pubsweet migrate"
 docker-compose up
 ```
 
