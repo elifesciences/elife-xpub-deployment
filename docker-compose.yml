@@ -91,6 +91,8 @@ services:
         environment:
             POSTGRES_USER: ${PGUSER}
             POSTGRES_DB: ${PGDATABASE}
+            # https://github.com/docker-library/postgres/issues/681
+            POSTGRES_HOST_AUTH_METHOD: trust
         volumes:
             - postgres-volume:/var/lib/postgresql/data
         restart: always
