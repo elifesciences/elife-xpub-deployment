@@ -1,6 +1,19 @@
 version: '3'
 
 services:
+    reporter:
+        image: liberoadmin/reviewer-reporter:${REPORTER_VERSION}
+        environment:
+            MAILER_AUTH_USER: 
+            MAILER_AUTH_PASS:
+            MAILER_HOST:
+            MAILER_PORT:
+            PGHOST:
+            PGUSER:
+            PGPASSWORD:
+            PGDATABASE:
+            PGPORT:
+
     app:
         image: elifesciences/elife-xpub:${XPUB_VERSION}
         command: >
