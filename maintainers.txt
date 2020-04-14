@@ -1,2 +1,2 @@
 xpub-tech-alerts@elifesciences.org
-elifesciences.slack.com#xpub-tech
+elifesciences.slack.com#libero-reviewer-tech
